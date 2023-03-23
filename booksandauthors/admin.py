@@ -4,14 +4,14 @@ from .models import Author, Book, Genre
 
 @admin.register(Author, site=admin.site)
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('second_name', 'first_name', 'third_name', 'date_of_birth')
-    list_display_links = ('second_name',)
+    list_display = ("second_name", "first_name", "third_name", "date_of_birth")
+    list_display_links = ("second_name",)
 
 
 @admin.register(Book, site=admin.site)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'get_genres', 'pub_date', 'get_authors')
-    list_display_links = ('title',)
+    list_display = ("title", "get_genres", "pub_date", "get_authors")
+    list_display_links = ("title",)
 
     def get_authors(self, obj):
         return ", ".join([str(author) for author in obj.author.all()])
@@ -25,5 +25,5 @@ class BookAdmin(admin.ModelAdmin):
 
 @admin.register(Genre, site=admin.site)
 class GenreAdmin(admin.ModelAdmin):
-    list_display = ('title',)
-    list_display_links = ('title',)
+    list_display = ("title",)
+    list_display_links = ("title",)

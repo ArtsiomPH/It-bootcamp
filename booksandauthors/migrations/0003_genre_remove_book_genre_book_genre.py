@@ -4,26 +4,35 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('booksandauthors', '0002_book_genre'),
+        ("booksandauthors", "0002_book_genre"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Genre',
+            name="Genre",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=55, unique=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=55, unique=True)),
             ],
         ),
         migrations.RemoveField(
-            model_name='book',
-            name='genre',
+            model_name="book",
+            name="genre",
         ),
         migrations.AddField(
-            model_name='book',
-            name='genre',
-            field=models.ManyToManyField(to='booksandauthors.genre', verbose_name='Жанр'),
+            model_name="book",
+            name="genre",
+            field=models.ManyToManyField(
+                to="booksandauthors.genre", verbose_name="Жанр"
+            ),
         ),
     ]

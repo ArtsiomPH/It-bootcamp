@@ -5,7 +5,11 @@
 <h1>Книги</h1>
 <ul>
 {% for book in object_list %}
-    <li><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></li>
+    <li>
+        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+        <a href="{% url 'book-update' book.pk %}">Изменить</a>
+        <a href="{% url 'book-delete' book.pk %}">Удалить</a>
+    </li>
 {% empty %}
     <li>No articles yet.</li>
 {% endfor %}

@@ -4,32 +4,43 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('booksandauthors', '0003_genre_remove_book_genre_book_genre'),
+        ("booksandauthors", "0003_genre_remove_book_genre_book_genre"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='author',
-            options={'ordering': ['second_name', 'first_name'], 'verbose_name': 'Автор', 'verbose_name_plural': 'Авторы'},
+            name="author",
+            options={
+                "ordering": ["second_name", "first_name"],
+                "verbose_name": "Автор",
+                "verbose_name_plural": "Авторы",
+            },
         ),
         migrations.AlterModelOptions(
-            name='book',
-            options={'ordering': ['title'], 'verbose_name': 'Книга', 'verbose_name_plural': 'Книги'},
+            name="book",
+            options={
+                "ordering": ["title"],
+                "verbose_name": "Книга",
+                "verbose_name_plural": "Книги",
+            },
         ),
         migrations.AlterModelOptions(
-            name='genre',
-            options={'verbose_name': 'Жанр', 'verbose_name_plural': 'Жанры'},
+            name="genre",
+            options={"verbose_name": "Жанр", "verbose_name_plural": "Жанры"},
         ),
         migrations.AlterField(
-            model_name='book',
-            name='author',
-            field=models.ManyToManyField(blank=True, to='booksandauthors.author', verbose_name='Автор'),
+            model_name="book",
+            name="author",
+            field=models.ManyToManyField(
+                blank=True, to="booksandauthors.author", verbose_name="Автор"
+            ),
         ),
         migrations.AlterField(
-            model_name='book',
-            name='genre',
-            field=models.ManyToManyField(blank=True, to='booksandauthors.genre', verbose_name='Жанр'),
+            model_name="book",
+            name="genre",
+            field=models.ManyToManyField(
+                blank=True, to="booksandauthors.genre", verbose_name="Жанр"
+            ),
         ),
     ]

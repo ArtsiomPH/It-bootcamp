@@ -10,9 +10,7 @@ class Genre(models.Model):
         verbose_name_plural = "Жанры"
 
     def get_absolute_url(self):
-        return reverse('genre-detail', args=(self.pk, ))
+        return reverse("genre-detail", args=(self.pk,))
 
     def __str__(self):
         return self.title
-
-
