@@ -7,10 +7,10 @@ from .genre import Genre
 
 class Book(models.Model):
     title = models.CharField(max_length=55, verbose_name="Название")
-    genre = models.ManyToManyField(Genre, verbose_name="Жанр")
+    genre = models.ManyToManyField(Genre, verbose_name="Жанр", blank=True)
     pub_date = models.DateField(blank=True, null=True, verbose_name="Дата издания")
     description = models.TextField(max_length=1000, blank=True, null=True, verbose_name="Краткое описание")
-    author = models.ManyToManyField(Author, verbose_name="Автор")
+    author = models.ManyToManyField(Author, verbose_name="Автор", blank=True)
 
     class Meta:
         ordering = ["title"]
@@ -18,7 +18,7 @@ class Book(models.Model):
         verbose_name_plural = "Книги"
 
     def get_absolute_url(self):
-        return reverse('authors', args=(self.pk, ))
+        return reverse('book-detail', args=(self.pk, ))
 
     def __str__(self):
         return self.title

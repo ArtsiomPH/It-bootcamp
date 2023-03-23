@@ -15,7 +15,7 @@ class Author(models.Model):
         verbose_name_plural = "Авторы"
 
     def get_absolute_url(self):
-        return reverse('authors', args=(self.pk, ))
+        return reverse('author-detail', args=(self.pk, ))
 
     def __str__(self):
         if self.third_name:
