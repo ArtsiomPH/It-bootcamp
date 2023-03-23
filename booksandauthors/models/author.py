@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Author(models.Model):
@@ -10,6 +11,11 @@ class Author(models.Model):
 
     class Meta:
         ordering = ["second_name", "first_name"]
+        verbose_name = "Автор"
+        verbose_name_plural = "Авторы"
+
+    def get_absolute_url(self):
+        return reverse('authors', args=(self.pk, ))
 
     def __str__(self):
         if self.third_name:
