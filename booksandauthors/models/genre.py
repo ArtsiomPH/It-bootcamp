@@ -3,7 +3,7 @@ from django.urls import reverse
 
 
 class Genre(models.Model):
-    title = models.CharField(max_length=55, unique=True)
+    title = models.CharField(max_length=55, unique=True, verbose_name="Название")
 
     class Meta:
         verbose_name = "Жанр"

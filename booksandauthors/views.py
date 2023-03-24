@@ -1,7 +1,6 @@
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 from .models import Author, Book, Genre
 
@@ -13,19 +12,15 @@ class AuthorListView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
-        context["title"] = "Авторы"
+        context["title"] = context["header"] = "Авторы"
+        context["head_table"] = ["Фамилия", "Имя", "Отчество", "Дата Рождения"]
         return context
-
-
-class AuthorDetailView(DetailView):
-    model = Author
-    template_name = "author_detail.html"
 
 
 class AuthorCreateView(CreateView):
     model = Author
     fields = "__all__"
-    template_name = "author_create.html"
+    template_name = "create.html"
     success_url = reverse_lazy("authors-list")
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -37,7 +32,7 @@ class AuthorCreateView(CreateView):
 class AuthorUpdateView(UpdateView):
     model = Author
     fields = "__all__"
-    template_name = "author_create.html"
+    template_name = "create.html"
     success_url = reverse_lazy("authors-list")
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -49,34 +44,31 @@ class AuthorUpdateView(UpdateView):
 class AuthorDeleteView(DeleteView):
     model = Author
     success_url = reverse_lazy("authors-list")
-    template_name = "author_confirm_delete.html"
+    template_name = "confirm_delete.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
         context["title"] = "Подтверждение удаления"
+        context["url"] = reverse("authors-list")
         return context
 
 
 class BookListView(ListView):
-    model = Book
+    queryset = Book.objects.prefetch_related("author").prefetch_related("genre").all()
     paginate_by = 20
     template_name = "books_list.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
-        context["title"] = "Книги"
+        context["title"] = context["header"] = "Книги"
+        context["head_table"] = ["Название", "Жанр", "Год издания", "Авторы"]
         return context
 
 
-class BookDetailView(DetailView):
-    model = Book
-    template_name = "book_detail.html"
-
-
 class BookCreateView(CreateView):
-    model = Book
+    queryset = Book.objects.prefetch_related("author").prefetch_related("genre").all()
     fields = "__all__"
-    template_name = "book_create.html"
+    template_name = "create.html"
     success_url = reverse_lazy("books-list")
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -86,9 +78,9 @@ class BookCreateView(CreateView):
 
 
 class BookUpdateView(UpdateView):
-    model = Book
-    fields = '__all__'
-    template_name = "book_create.html"
+    queryset = Book.objects.prefetch_related("author").prefetch_related("genre").all()
+    fields = "__all__"
+    template_name = "create.html"
     success_url = reverse_lazy("books-list")
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -100,9 +92,58 @@ class BookUpdateView(UpdateView):
 class BookDeleteView(DeleteView):
     model = Book
     success_url = reverse_lazy("books-list")
-    template_name = "book_confirm_delete.html"
+    template_name = "confirm_delete.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
         context["title"] = "Подтверждение удаления"
+        context["url"] = reverse("books-list")
+        return context
+
+
+class GenreListView(ListView):
+    model = Genre
+    paginate_by = 20
+    template_name = "genres_list.html"
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        context["title"] = context["header"] = "Жанры"
+        context["head_table"] = ["Название"]
+        return context
+
+
+class GenreCreateView(CreateView):
+    model = Genre
+    fields = "__all__"
+    template_name = "create.html"
+    success_url = reverse_lazy("genres-list")
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        context["title"] = "Добавить жанр"
+        return context
+
+
+class GenreUpdateView(UpdateView):
+    model = Genre
+    fields = "__all__"
+    template_name = "create.html"
+    success_url = reverse_lazy("genres-list")
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        context["title"] = "Изменение данных"
+        return context
+
+
+class GenreDeleteView(DeleteView):
+    model = Genre
+    success_url = reverse_lazy("genres-list")
+    template_name = "confirm_delete.html"
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        context["title"] = "Подтверждение удаления"
+        context["url"] = reverse("genres-list")
         return context

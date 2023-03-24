@@ -2,16 +2,34 @@
 {% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
-<h1>Authors</h1>
-<ul>
-{% for author in object_list %}
-    <li>
-        <a href="{{ author.get_absolute_url }}">{{ author.second_name }}</a>
-        <a href="{% url 'author-update' author.pk %}">Изменить</a>
-        <a href="{% url 'author-delete' author.pk %}">Удалить</a>
-    </li>
-{% empty %}
-    <li>No articles yet.</li>
-{% endfor %}
-</ul>
+<div class="row">
+    <div class="col-8">
+        <h2>{{ header }}</h2>
+    </div>
+    <div align="right" class="col-4">
+        <a class="btn btn-outline-success" href="{% url 'author-create' %}">Добавить автора</a>
+    </div>
+</div>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        {% for title in head_table %}
+        <th scope="col">{{ title }}</th>
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+    {% for author in object_list %}
+    <tr>
+        <td><a class="link-dark" href="{% url 'author-update' author.pk %}">{{ author.second_name }}</a></td>
+        <td>{{ author.first_name }}</td>
+        <td>{{ author.third_name }}</td>
+        <td>{{ author.date_of_birth }}</td>
+        <td><a class="btn btn-outline-danger" href="{% url 'author-delete' author.pk %}" role="button">Удалить</a></td>
+    </tr>
+    {% empty %}
+    <h2>Авторов пока нет.</h2>
+    {% endfor %}
+    </tbody>
+</table>
 {% endblock content %}

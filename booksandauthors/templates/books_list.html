@@ -2,16 +2,38 @@
 {% block title %}{{ title }}{% endblock title %}
 
 {% block content %}
-<h1>Книги</h1>
-<ul>
-{% for book in object_list %}
-    <li>
-        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
-        <a href="{% url 'book-update' book.pk %}">Изменить</a>
-        <a href="{% url 'book-delete' book.pk %}">Удалить</a>
-    </li>
-{% empty %}
-    <li>No articles yet.</li>
-{% endfor %}
-</ul>
+<div class="row">
+    <div class="col-8">
+        <h2>{{ header }}</h2>
+    </div>
+    <div align="right" class="col-4">
+        <a class="btn btn-outline-success" href="{% url 'book-create' %}">Добавить книгу</a>
+    </div>
+</div>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        {% for title in head_table %}
+        <th scope="col">{{ title }}</th>
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+    {% for book in object_list %}
+    <tr>
+        <td><a class="link-dark" href="{% url 'book-update' book.pk %}">{{ book.title }}</a></td>
+        <td>{% for genre in book.genre.all %}{{ genre.title }}{% endfor %}</td>
+        <td>{{ book.pub_date }}</td>
+        <td>
+            {% for author in book.author.all %}
+            {{ author }}
+            {% endfor %}
+        </td>
+        <td><a class="btn btn-outline-danger" href="{% url 'book-delete' book.pk %}" role="button">Удалить</a></td>
+    </tr>
+    {% empty %}
+    <h2>Книг пока нет</h2>
+    {% endfor %}
+    </tbody>
+</table>
 {% endblock content %}
