@@ -39,7 +39,7 @@ class TestAdmin(APITestCase):
             assert response.status_code == HTTPStatus.OK, response.content
 
     def test_author(self) -> None:
-        author = Author.objects.create(second_name='Peter', first_name="Parker")
+        author = Author.objects.create()
         self.assert_forms(Author, author.id)
 
     def test_book(self) -> None:

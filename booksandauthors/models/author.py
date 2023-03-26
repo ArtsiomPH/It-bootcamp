@@ -25,11 +25,5 @@ class Author(models.Model):
 
     def __str__(self):
         if self.third_name:
-            return (
-                f"{self.second_name} "
-                + f"{self.first_name}"[0]
-                + "."
-                + f"{self.third_name}"[0]
-                + "."
-            )
-        return f"{self.second_name} " + f"{self.first_name}"[0] + "."
+            return f"{self.second_name} {str(self.first_name)[0]}. {str(self.third_name)[0]}."
+        return f"{self.second_name} {str(self.first_name)[0]}."

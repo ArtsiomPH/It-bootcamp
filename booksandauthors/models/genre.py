@@ -6,6 +6,7 @@ class Genre(models.Model):
     title = models.CharField(max_length=55, unique=True, verbose_name="Название")
 
     class Meta:
+        ordering = ["title"]
         verbose_name = "Жанр"
         verbose_name_plural = "Жанры"
 
