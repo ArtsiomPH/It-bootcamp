@@ -1,3 +1,4 @@
 .idea/
 .DS_sore
 __pycache__
+.pytest_cache

@@ -12,7 +12,7 @@ class Book(models.Model):
     description = models.TextField(
         max_length=1000, blank=True, null=True, verbose_name="Краткое описание"
     )
-    author = models.ManyToManyField(Author, verbose_name="Автор", blank=True)
+    author = models.ManyToManyField(Author, verbose_name="Автор")
 
     class Meta:
         ordering = ["title"]
