@@ -11,6 +11,8 @@ psycopg2-binary = "^2.9.5"
 django-crispy-forms = "^2.0"
 crispy-bootstrap5 = "^0.7"
 djangorestframework = "^3.14.0"
+flake8 = "^6.0.0"
+mypy = "^1.4.1"
 
 [tool.poetry.dev-dependencies]
 

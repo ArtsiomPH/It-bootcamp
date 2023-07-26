@@ -1,4 +1,6 @@
 .idea/
-.DS_sore
+.DS_Store
 __pycache__
-.pytest_cache
+.pytest_cache/
+.coverage
+.coverage.*

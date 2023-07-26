@@ -19,8 +19,8 @@ class Book(models.Model):
         verbose_name = "Книга"
         verbose_name_plural = "Книги"
 
-    def get_absolute_url(self):
+    def get_absolute_url(self) -> None:
         return reverse("book-detail", args=(self.pk,))
 
-    def __str__(self):
+    def __str__(self) -> models.CharField:
         return self.title

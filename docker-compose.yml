@@ -1,7 +1,7 @@
-version: '3.11'
+version: '3.9'
 
 services:
-  api:
+  app:
     build: .
     volumes:
       - .:/app:cached
@@ -13,7 +13,7 @@ services:
       - db
     environment: &api-environment
       DJANGO_ENV: dev
-      DJANGO_SECRET_KEY: secret_key
+      DJANGO_SECRET_KEY: django-insecure-+t=#p30v)_iw(s*-4^-6&m02g)*n^4&f4cf_x13olt2*b
       DATABASE_NAME: postgres
       DATABASE_USER: postgres
       DATABASE_PASSWORD: postgres
@@ -21,8 +21,6 @@ services:
       DATABASE_PORT: 5432
     command: >
       sh -c "python manage.py migrate &&
-             python manage.py make_base &&
-             python manage.py init_admin &&
              python manage.py runserver 0.0.0.0:8000"
 
   db:

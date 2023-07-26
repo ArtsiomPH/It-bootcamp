@@ -8,7 +8,7 @@ from booksandauthors.models import Author, Book
 class Command(BaseCommand):
     help = "Add some authors and books"
 
-    def handle(self, *args, **options):
+    def handle(self, *args, **options) -> None:
         if Author.objects.count() == 0:
             authors_list = []
             for counter in range(20):

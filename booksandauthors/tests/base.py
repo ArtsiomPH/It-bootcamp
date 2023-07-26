@@ -4,6 +4,8 @@ from django.test import TestCase
 from django.urls import reverse
 from django.db import models
 
+from booksandauthors.models import Author
+
 
 class ListViews(TestCase):
     basename: str
@@ -19,7 +21,7 @@ class ListViews(TestCase):
             cls.model.objects.create(
                 first_name=f"Peter {object_id}",
                 second_name=f"Parker {object_id}",
-            ) if cls.model._meta.model_name == "Author" else cls.model.objects.create(
+            ) if cls.model == Author else cls.model.objects.create(
                 title=f"{object_id}"
             )
 
