@@ -13,3 +13,6 @@ format_code:
 
 create_admin:
 	python manage.py init_admin
+
+base:
+	python manage.py make_base

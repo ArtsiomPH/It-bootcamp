@@ -21,9 +21,7 @@ class ListViews(TestCase):
             cls.model.objects.create(
                 first_name=f"Peter {object_id}",
                 second_name=f"Parker {object_id}",
-            ) if cls.model == Author else cls.model.objects.create(
-                title=f"{object_id}"
-            )
+            ) if cls.model == Author else cls.model.objects.create(title=f"{object_id}")
 
     def view_url_exists_at_desired_location(self) -> None:
         response = self.client.get(f"/{self.basename}/")
