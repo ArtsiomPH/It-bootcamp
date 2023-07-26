@@ -23,7 +23,7 @@
     {% for book in object_list %}
     <tr>
         <td><a class="link-dark" href="{% url 'book-update' book.pk %}">{{ book.title }}</a></td>
-        <td>{% for genre in book.genre.all %}{{ genre.title }}{% endfor %}</td>
+        <td>{% for genre in book.genre.all %} {{ genre.title }} {% endfor %}</td>
         <td>{{ book.pub_date }}</td>
         <td>
             {% for author in book.author.all %}

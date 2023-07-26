@@ -33,7 +33,7 @@ docker-compose run --rm app pytest
 ## Запуск линтеров
 
 ```sh
-docker-compose run --rm app make check
+docker-compose run --rm app make lint
 ```
 
 ## Форматирование
