@@ -1,7 +1,6 @@
 # It-bootcamp
 Тестовое задание для IT-Bootcamp<br />
-Проект упакован в докер контейнер. 
-Cборка:
+Проект упакован в докер контейнер.
 
 ## Запуск проекта
 
@@ -10,7 +9,7 @@ docker-compose build
 docker-compose up
 ```
 
-## создание суперпользователя
+## Создание суперпользователя
 
 ```sh
 docker-compose run --rm app make create_admin

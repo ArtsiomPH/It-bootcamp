@@ -10,6 +10,7 @@
         <a class="btn btn-outline-success" href="{% url 'genre-create' %}">Добавить жанр</a>
     </div>
 </div>
+{% if object_list %}
 <table class="table table-striped">
     <thead>
     <tr>
@@ -24,9 +25,10 @@
         <td><a class="link-dark" href="{% url 'genre-update' genre.pk %}">{{ genre.title }}</a></td>
         <td align="right"><a class="btn btn-outline-danger" href="{% url 'genre-delete' genre.pk %}" role="button">Удалить</a></td>
     </tr>
-    {% empty %}
-    <h2>Жанров пока нет</h2>
     {% endfor %}
     </tbody>
 </table>
+{% else %}
+<h3 align="center">Информации о жанрах нет</h3>
+{% endif %}
 {% endblock content %}

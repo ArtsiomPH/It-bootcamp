@@ -10,6 +10,7 @@
         <a class="btn btn-outline-success" href="{% url 'author-create' %}">Добавить автора</a>
     </div>
 </div>
+{% if object_list %}
 <table class="table table-striped">
     <thead>
     <tr>
@@ -27,9 +28,11 @@
         <td>{{ author.date_of_birth }}</td>
         <td><a class="btn btn-outline-danger" href="{% url 'author-delete' author.pk %}" role="button">Удалить</a></td>
     </tr>
-    {% empty %}
-    <h2>Авторов пока нет</h2>
     {% endfor %}
     </tbody>
+
 </table>
+{% else %}
+<h3 align="center">Информации об авторах нет</h3>
+{% endif %}
 {% endblock content %}

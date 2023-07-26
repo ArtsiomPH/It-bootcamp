@@ -10,6 +10,7 @@
         <a class="btn btn-outline-success" href="{% url 'book-create' %}">Добавить книгу</a>
     </div>
 </div>
+{% if object_list %}
 <table class="table table-striped">
     <thead>
     <tr>
@@ -31,9 +32,10 @@
         </td>
         <td><a class="btn btn-outline-danger" href="{% url 'book-delete' book.pk %}" role="button">Удалить</a></td>
     </tr>
-    {% empty %}
-    <h2>Книг пока нет</h2>
     {% endfor %}
     </tbody>
 </table>
+{% else %}
+<h3 align="center">Информации о книгах нет</h3>
+{% endif %}
 {% endblock content %}
