@@ -8,7 +8,8 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
-        make
+        make \
+        git
 
 RUN curl -sSL https://install.python-poetry.org | python3 -
 
