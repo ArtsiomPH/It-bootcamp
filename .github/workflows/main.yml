@@ -20,3 +20,6 @@ jobs:
           COVERAGE: true
           RAILS_ENV: test
         run: docker-compose --file docker-compose.ci.yml run --rm app make test
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v2
+

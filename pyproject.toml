@@ -14,7 +14,8 @@ djangorestframework = "^3.14.0"
 flake8 = "^6.0.0"
 mypy = "^1.4.1"
 faker = "^19.2.0"
-coverage = "^7.2.7"
+coverage = "^6.1.1"
+coveralls = "^3.3.1"
 
 [tool.poetry.dev-dependencies]
 
