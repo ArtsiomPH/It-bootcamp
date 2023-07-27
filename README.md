@@ -1,4 +1,6 @@
-# It-bootcamp
+# IT-bootcamp
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FArtsiomPH%2FIt-bootcamp%2Fbadge%3Fref%3Dmain&style=flat)](https://actions-badge.atrox.dev/ArtsiomPH/It-bootcamp/goto?ref=main)
+
 Тестовое задание для IT-Bootcamp<br/>
 Проект упакован в докер контейнер.
 
@@ -41,5 +43,3 @@ docker-compose run --rm app make lint
 ```sh
 docker-compose run --rm app make format_code
 ```
-
-Тестовая база данных формируется при запуске контейнера.
