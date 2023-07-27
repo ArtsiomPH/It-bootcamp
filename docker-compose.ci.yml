@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.7"
 
 x-app-config: &app-config
   DJANGO_ENV: dev
@@ -7,14 +7,17 @@ x-app-config: &app-config
 x-db-config: &db-config
   DATABASE_NAME: postgres
   DATABASE_USER: postgres
-  DATABASE_PASSWORD: postgres
+  DATABASE_PASSWORD: pgpassword
   DATABASE_HOST: db
   DATABASE_PORT: 5432
+  POSTGRES_PASSWORD: pgpassword
 
 services:
-  app:
+  api:
+    image: userapp_api
     build:
       context: .
+      target: base
     environment:
       <<: *app-config
       <<: *db-config
@@ -26,7 +29,7 @@ services:
     tty: true
 
   db:
-    image: postgres:14.8-alpine3.18
+    image: postgres:12.5-alpine
     environment: *db-config
     logging:
       driver: none
