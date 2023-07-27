@@ -1,7 +1,7 @@
 SHELL=/bin/bash
 
 lint:
-	flake8 --max-complexity 10
+	flake8
 
 test:
 	pytest

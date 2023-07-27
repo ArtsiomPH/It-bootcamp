@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.8'
 
 services:
   app:
@@ -11,7 +11,7 @@ services:
       - 8000:8000
     depends_on:
       - db
-    environment: &api-environment
+    environment: &app-environment
       DJANGO_ENV: dev
       DJANGO_SECRET_KEY: django-insecure-+t=#p30v)_iw(s*-4^-6&m02g)*n^4&f4cf_x13olt2*b
       DATABASE_NAME: postgres
