@@ -16,7 +16,6 @@ services:
   app:
     build:
       context: .
-      target: base
     environment:
       <<: *app-config
       <<: *db-config
