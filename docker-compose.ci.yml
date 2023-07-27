@@ -22,9 +22,16 @@ services:
       - db
     ports:
       - "8000:8000"
+    stdin_open: true
+    tty: true
 
   db:
     image: postgres:14.8-alpine3.18
     environment: *db-config
+    logging:
+      driver: none
     ports:
       - "5432:5432"
+
+volumes:
+  sqlvolume:
