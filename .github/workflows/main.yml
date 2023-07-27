@@ -21,9 +21,9 @@ jobs:
           RAILS_ENV: test
         run: docker-compose --file docker-compose.ci.yml run --rm app make test
       - name: Coveralls GitHub Action
-        steps:
-          - run: export COVERALLS_REPO_TOKEN=${{secrets.COVERALLS_REPO_TOKEN}}
-          - run: docker-compose --file docker-compose.ci.yml run --rm app coveralls
+          run: |
+            export COVERALLS_REPO_TOKEN=${{secrets.COVERALLS_REPO_TOKEN}}
+            docker-compose --file docker-compose.ci.yml run --rm app coveralls
 
 
 
