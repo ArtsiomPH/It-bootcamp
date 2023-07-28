@@ -1,9 +1,11 @@
+from typing import Any
+
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
 
 
 class Command(BaseCommand):
-    def handle(self, *args, **options) -> None:
+    def handle(self, *args: tuple[Any, ...], **options: dict[str, Any]) -> None:
         if User.objects.count() == 0:
             username = "admin"
             password = "admin"

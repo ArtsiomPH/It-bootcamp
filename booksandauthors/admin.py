@@ -13,14 +13,13 @@ class BookAdmin(admin.ModelAdmin):
     list_display = ("title", "get_genres", "pub_date", "get_authors")
     list_display_links = ("title",)
 
-    def get_authors(self, obj):
+    @admin.display(description="Авторы")
+    def get_authors(self, obj: Book) -> str:
         return ", ".join([str(author) for author in obj.author.all()])
 
-    def get_genres(self, obj):
+    @admin.display(description="Жанры")
+    def get_genres(self, obj: Book) -> str:
         return ", ".join([str(genre) for genre in obj.genre.all()])
-
-    get_authors.short_description = "Авторы"
-    get_genres.short_description = "Жанры"
 
 
 @admin.register(Genre, site=admin.site)

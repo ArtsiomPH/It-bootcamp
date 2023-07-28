@@ -1,5 +1,7 @@
 import random
 
+from typing import Any
+
 from django.core.management.base import BaseCommand
 
 from booksandauthors.models import Author, Book, Genre
@@ -10,7 +12,7 @@ from faker import Faker
 class Command(BaseCommand):
     help = "Add some authors and books"
 
-    def handle(self, *args, **options) -> None:
+    def handle(self, *args: tuple[Any, ...], **options: dict[str, Any]) -> None:
         fake = Faker(["ru_RU"])
         genres = ["Роман", "Детектив", "Ужасы", "Cтихи", "Пьеса"]
         if Author.objects.count() == 0:

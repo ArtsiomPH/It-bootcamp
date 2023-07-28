@@ -2,6 +2,7 @@ SHELL=/bin/bash
 
 lint:
 	flake8
+	mypy --sqlite-cache .
 
 test:
 	pytest
