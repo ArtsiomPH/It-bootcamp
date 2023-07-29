@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock title %}
+{% block content %}
+<h1 align="center"> {{ object.title}} </h1>
+<h3>Год публикации</h3>
+<span class='lead'>{{ object.pub_date|default_if_none:"-" }} </span>
+<h3>Авторы</h3>
+{% for author in book.author.all %}
+    <span class='lead'>{{ author }}</span>
+{% empty %}
+    <span class='lead'>Информации нет</span>
+{% endfor %}
+
+<h3>Описание</h3>
+<span class=lead>{{ object.description|default_if_none:"Информации нет" }}</span><br>
+<a class="btn btn-outline-info" href="{% url 'book-update' book.pk %}" role="button">Изменить</a>
+{% endblock content %}

@@ -5,6 +5,6 @@
 <h3>Дата рождения</h3>
 <span class='lead'>{{ object.date_of_birth|default_if_none:"-" }} </span>
 <h3>Биография</h3>
-<span class='body'>{{ object.biography|default_if_none:"Информации нет" }}</span><br>
+<span class='lead'>{{ object.biography|default_if_none:"Информации нет" }}</span><br>
 <a class="btn btn-outline-info" href="{% url 'author-update' author.pk %}" role="button">Изменить</a>
 {% endblock content %}

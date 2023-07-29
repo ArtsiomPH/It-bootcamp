@@ -22,7 +22,8 @@
     <tbody>
     {% for genre in object_list %}
     <tr>
-        <td><a class="link-dark" href="{% url 'genre-update' genre.pk %}">{{ genre.title }}</a></td>
+        <td><a class="link-dark">{{ genre.title }}</a></td>
+        <td align="right"><a class="btn btn-outline-info" href="{% url 'genre-update' genre.pk %}" role="button">Изменить</a></td>
         <td align="right"><a class="btn btn-outline-danger" href="{% url 'genre-delete' genre.pk %}" role="button">Удалить</a></td>
     </tr>
     {% endfor %}

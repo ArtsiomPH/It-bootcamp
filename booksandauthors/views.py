@@ -4,8 +4,6 @@ from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy, reverse
 
-from django.db.models import QuerySet
-
 from .models import Author, Book, Genre
 
 
@@ -77,6 +75,17 @@ class BookListView(ListView):
         context = super().get_context_data()
         context["title"] = context["header"] = "Книги"
         context["head_table"] = ["Название", "Жанр", "Год издания", "Авторы"]
+        return context
+
+
+class BookDetailView(DetailView):
+    model = Book
+    template_name = 'books_detail.html'
+
+    def get_context_data(self, **kwargs: dict[str, Any]):
+        context = super().get_context_data()
+        book_object = self.get_object()
+        context["title"] = book_object.title
         return context
 
 

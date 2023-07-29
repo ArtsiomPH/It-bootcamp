@@ -22,14 +22,15 @@
     <tbody>
     {% for book in object_list %}
     <tr>
-        <td><a class="link-dark" href="{% url 'book-update' book.pk %}">{{ book.title }}</a></td>
+        <td><a class="link-dark" href="{% url 'book-detail' book.pk %}">{{ book.title }}</a></td>
         <td>{% for genre in book.genre.all %} {{ genre.title }} {% endfor %}</td>
-        <td>{{ book.pub_date }}</td>
+        <td>{{ book.pub_date|default_if_none:"-" }}</td>
         <td>
-            {% for author in book.author.all %}
+        {% for author in book.author.all %}
             {{ author }}
-            {% endfor %}
+        {% endfor %}
         </td>
+        <td><a class="btn btn-outline-info" href="{% url 'book-update' book.pk %}" role="button">Изменить</a></td>
         <td><a class="btn btn-outline-danger" href="{% url 'book-delete' book.pk %}" role="button">Удалить</a></td>
     </tr>
     {% endfor %}
