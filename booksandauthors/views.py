@@ -1,8 +1,10 @@
 from typing import Any
 
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy, reverse
+
+from django.db.models import QuerySet
 
 from .models import Author, Book, Genre
 
@@ -15,7 +17,18 @@ class AuthorListView(ListView):
     def get_context_data(self, *, object_list: Any = None, **kwargs: dict[str, Any]) -> dict:
         context = super().get_context_data()
         context["title"] = context["header"] = "Авторы"
-        context["head_table"] = ["Фамилия", "Имя", "Отчество", "Дата Рождения"]
+        context["head_table"] = ["Фамилия", "Имя", "Отчество", "Дата рождения"]
+        return context
+
+
+class AuthorDetailView(DetailView):
+    model = Author
+    template_name = 'authors_detail.html'
+
+    def get_context_data(self, **kwargs: dict[str, Any]):
+        context = super().get_context_data()
+        author_object = self.get_object()
+        context["title"] = author_object.second_name
         return context
 
 

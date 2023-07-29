@@ -22,10 +22,11 @@
     <tbody>
     {% for author in object_list %}
     <tr>
-        <td><a class="link-dark" href="{% url 'author-update' author.pk %}">{{ author.second_name }}</a></td>
+        <td><a class="link-dark" href="{% url 'author-detail' author.pk %}">{{ author.second_name }}</a></td>
         <td>{{ author.first_name }}</td>
-        <td>{{ author.third_name }}</td>
-        <td>{{ author.date_of_birth }}</td>
+        <td>{{ author.third_name|default_if_none:"-" }}</td>
+        <td>{{ author.date_of_birth|default_if_none:"-" }}</td>
+        <td><a class="btn btn-outline-info" href="{% url 'author-update' author.pk %}" role="button">Изменить</a></td>
         <td><a class="btn btn-outline-danger" href="{% url 'author-delete' author.pk %}" role="button">Удалить</a></td>
     </tr>
     {% endfor %}
