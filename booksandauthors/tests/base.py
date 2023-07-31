@@ -90,7 +90,7 @@ class CreateViews(TestViewsBase):
     attributes: dict
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpTestData(cls) -> None:
         if cls.model == Book:
             author = Author.objects.create(first_name="test", second_name="test")
             cls.attributes.update({"author": author.id})
