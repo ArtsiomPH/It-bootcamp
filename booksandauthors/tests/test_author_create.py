@@ -10,7 +10,7 @@ class TestAuthorCreate(CreateViews):
     attributes = {"first_name": "John", "second_name": "Dorian"}
 
     def test_view_url_exists_at_desired_location(self) -> None:
-        self.view_url_exists_at_desired_location('add/')
+        self.view_url_exists_at_desired_location("add/")
 
     def test_view_url_accessible_by_name(self) -> None:
         self.view_url_accessible_by_name()
