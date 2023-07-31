@@ -23,7 +23,7 @@ class AuthorListView(ListView):
 
 class AuthorDetailView(DetailView):
     model = Author
-    template_name = "authors_detail.html"
+    template_name = "author_detail.html"
 
     def get_context_data(self, **kwargs: dict[str, Any]) -> dict:
         context = super().get_context_data()
@@ -90,7 +90,7 @@ class BookListView(ListView):
 
 class BookDetailView(DetailView):
     queryset = Book.objects.prefetch_related("author").prefetch_related("genre").all()
-    template_name = "books_detail.html"
+    template_name = "book_detail.html"
 
     def get_context_data(self, **kwargs: dict[str, Any]) -> dict:
         context = super().get_context_data()
