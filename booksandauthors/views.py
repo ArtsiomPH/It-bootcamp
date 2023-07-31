@@ -100,7 +100,7 @@ class BookDetailView(DetailView):
 
 
 class BookCreateView(CreateView):
-    queryset = Book.objects.prefetch_related("author").prefetch_related("genre").all()
+    model = Book
     fields = "__all__"
     template_name = "create.html"
     success_url = reverse_lazy("books-list")

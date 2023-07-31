@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.db import models
 
-from booksandauthors.models import Author
+from booksandauthors.models import Author, Book
 
 
 class TestViewsBase(TestCase):
@@ -84,3 +84,39 @@ class DetailViews(TestViewsBase):
             reverse(f"{self.basename}-{self.view_name_suffix}", args=[100])
         )
         self.assertEqual(response.status_code, 404)
+
+
+class CreateViews(TestViewsBase):
+    attributes: dict
+
+    @classmethod
+    def setUpTestData(cls):
+        if cls.model == Book:
+            author = Author.objects.create(first_name='test', second_name='test')
+            cls.attributes.update({"author": author.id})
+
+    def create_object(self) -> Type[models.Model]:
+        response = self.client.post(reverse(f"{self.basename}-{self.view_name_suffix}"), data=self.attributes)
+        print(response)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse(f"{self.basename}s-list"))
+        obj = self.model.objects.last()
+        return obj
+
+    def created_object_has_attributes(self) -> None:
+        obj = self.create_object()
+        if hasattr(obj, "second_name"):
+            self.assertEqual(self.attributes["second_name"], obj.second_name)
+        else:
+            self.assertEqual(self.attributes["title"], obj.title)
+
+    def created_object_single_in_db(self) -> None:
+        self.create_object()
+        self.assertEqual(self.model.objects.count(), 1)
+
+    def check_object_accessible_in_detail(self) -> None:
+        obj = self.create_object()
+        response = self.client.get(reverse(f"{self.basename}-detail", kwargs={"pk": obj.id}))
+        self.assertEqual(response.status_code, 200)
+
+
